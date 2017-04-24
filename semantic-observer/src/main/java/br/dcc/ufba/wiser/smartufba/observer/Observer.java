@@ -1,5 +1,16 @@
 package br.dcc.ufba.wiser.smartufba.observer;
 
+import java.io.IOException;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+
 import org.apache.jena.query.Query;
 import org.apache.jena.query.QueryExecution;
 import org.apache.jena.query.QueryExecutionFactory;
@@ -31,26 +42,29 @@ public class Observer {
 				"                   j.0:hasDataValue  '37'^^xsd:double ; " +
 				"                   j.0:isSettingFor  false . }";
 
-		
-		
 		Query query = QueryFactory.create(queryString);
 		 
-		
-		
-		// Execute the query and obtain results
 		QueryExecution qe = QueryExecutionFactory.create(query, model);
 		ResultSet results = qe.execSelect();
-		 
-		
 		if (results.hasNext()){
-			
-			System.out.println("Encontrou");
+			getActuator();
 		}
 		
 	}
 	
 	public void getActuator(){
-		
+		Client client = ClientBuilder.newClient();
+	
+		try{
+			Response resp = client.target("http://192.168.0.108:8181/cxf/lamp/devices/actuator/lamp").queryParam("status", false).request(MediaType.APPLICATION_JSON_TYPE).method("POST");
+			Integer status = resp.getStatus();
+			System.out.println(status);
+		}catch (Exception e){
+			e.printStackTrace();
+			
+		}finally{
+			client.close();
+		}
 	}
 	
 	public static void main (String args[]){
