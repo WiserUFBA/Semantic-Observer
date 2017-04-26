@@ -4,8 +4,8 @@
   <artifactId>semantic-observer</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <name>Observer</name>
-  <description>Observer  Module
-</description>
+  <description>Observer  Module</description>
+   <packaging>bundle</packaging>
 
    <properties>
 	  <maven.compiler.source>1.8</maven.compiler.source>
@@ -24,10 +24,10 @@
 				<extensions>true</extensions>
 				<configuration>
 					<instructions>
-						<Bundle-Activator>br.dcc.ufba.wiser.smartufba.reasoner.Activator</Bundle-Activator>
+						<Bundle-Activator>br.dcc.ufba.wiser.smartufba.observer.Activator</Bundle-Activator>
 						 <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
                         <Bundle-Description>${project.description}</Bundle-Description>
-                        <Export-Package>br.dcc.ufba.wiser.smartufba.reasoner</Export-Package>
+                        <Export-Package>br.dcc.ufba.wiser.smartufba.observer</Export-Package>
 						<Embed-Dependency>mqtt-client;scope=compile|runtimeinline=false</Embed-Dependency>
 						<Embed-Directory>target/dependency</Embed-Directory>
 						<Embed-StripGroup>true</Embed-StripGroup>

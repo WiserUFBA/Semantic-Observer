@@ -27,7 +27,7 @@
 		xmlns="http://camel.apache.org/schema/blueprint">
 		<route>
 			<from uri="timer://myTimer?period=12000" /><!-- 8 hours -->
-			<to uri="ObserverBean?method=observer" />
+			<to uri="bean:ObserverBean?method=observer" />
 		</route>
 	</camelContext>
  

@@ -21,10 +21,21 @@ import org.apache.jena.util.FileManager;
 
 public class Observer {
 	private static String fname = "http://192.168.0.13:3030/sistemasweb/";
-
+	
+	
+	public Observer(){
+		
+	}
+	
+	public void init() {
+		System.out.println("init");
+		
+	
+	}
+	
 	
 	public void observer(){
-		
+		System.out.println("aqii");
 		   Model model = FileManager.get().loadModel(fname );
 			 
 		
@@ -40,13 +51,15 @@ public class Observer {
 				"  WHERE { <http://wiser.dcc.ufba.br/smartUFBA/devices/ufbaino#obsValue_14915308050001491530865086> " +
 				"                   a                 j.1:ObservationValue ; " +
 				"                   j.0:hasDataValue  '37'^^xsd:double ; " +
-				"                   j.0:isSettingFor  false . }";
+				"                   j.0:isSettingFor  true . }";
 
 		Query query = QueryFactory.create(queryString);
 		 
 		QueryExecution qe = QueryExecutionFactory.create(query, model);
 		ResultSet results = qe.execSelect();
 		if (results.hasNext()){
+			
+			System.out.println("achou");
 			getActuator();
 		}
 		
@@ -54,7 +67,7 @@ public class Observer {
 	
 	public void getActuator(){
 		Client client = ClientBuilder.newClient();
-	
+	System.out.println("atuando");
 		try{
 			Response resp = client.target("http://192.168.0.108:8181/cxf/lamp/devices/actuator/lamp").queryParam("status", false).request(MediaType.APPLICATION_JSON_TYPE).method("POST");
 			Integer status = resp.getStatus();
@@ -66,10 +79,10 @@ public class Observer {
 			client.close();
 		}
 	}
-	
+	/*
 	public static void main (String args[]){
 		Observer observer = new Observer();
 		observer.observer();
 	}
-	
+	*/
 }
