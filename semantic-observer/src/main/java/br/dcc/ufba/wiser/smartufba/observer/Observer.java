@@ -5,6 +5,10 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
@@ -20,7 +24,10 @@ import org.apache.jena.rdf.model.Model;
 import org.apache.jena.util.FileManager;
 
 public class Observer {
-	private static String fname = "http://192.168.0.13:3030/sistemasweb/";
+	private static String fname = "http://192.168.0.160:3030/sistemasweb/";
+	private String adressFile;
+        private Path newFilePath;
+        private Path dir;
 	
 	
 	public Observer(){
@@ -56,20 +63,51 @@ public class Observer {
 		Query query = QueryFactory.create(queryString);
 		 
 		QueryExecution qe = QueryExecutionFactory.create(query, model);
-		ResultSet results = qe.execSelect();
+		
+                
+                ResultSet results = qe.execSelect();
 		if (results.hasNext()){
 			
 			System.out.println("achou");
 			getActuator();
 		}
+                
+                createFile();
 		
 	}
+        
+        public void createFile(){
+             System.out.println("criando arquivo");
+            
+            Path path = Paths.get("/home/openflow/data/");
+            try{
+                
+            if(Files.isDirectory(path)){   
+                
+                dir = Paths.get(path.toUri());
+                
+            }else{  
+                dir =  Files.createDirectories(path);
+            }
+            
+          
+            this.newFilePath = path.resolve("reg.txt");
+           
+            Files.write(getNewFilePath(), "{send: 1}\n".getBytes() ,StandardOpenOption.APPEND);
+            
+            
+            }catch(IOException v){
+               System.out.print(v.getMessage());
+            }
+        }
+
+
 	
 	public void getActuator(){
 		Client client = ClientBuilder.newClient();
 	System.out.println("atuando");
 		try{
-			Response resp = client.target("http://192.168.0.108:8181/cxf/lamp/devices/actuator/lamp").queryParam("status", false).request(MediaType.APPLICATION_JSON_TYPE).method("POST");
+			Response resp = client.target("http://time.jsontest.com/").queryParam("status", false).request(MediaType.APPLICATION_JSON_TYPE).method("GET");
 			Integer status = resp.getStatus();
 			System.out.println(status);
 		}catch (Exception e){
@@ -85,4 +123,25 @@ public class Observer {
 		observer.observer();
 	}
 	*/
+
+    /**
+     * @return the adressFile
+     */
+    public String getAdressFile() {
+        return adressFile;
+    }
+
+    /**
+     * @return the newFilePath
+     */
+    public Path getNewFilePath() {
+        return newFilePath;
+    }
+
+    /**
+     * @return the dir
+     */
+    public Path getDir() {
+        return dir;
+    }
 }
