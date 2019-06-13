@@ -7,7 +7,7 @@ The semantic observer module is responsible for observing the changes made in a 
 
 # Installation
 
-Before installing the Semantic-Observer module you need to introduce some Vert.x modules to ServiceMix. The dependencies are located at:
+Before installing the Semantic-Observer module you need to introduce some modules to ServiceMix. The dependencies are located at:
 
 https://github.com/WiserUFBA/Semantic-Observer/tree/master/semantic-observer/src/main/resources/dependencies
 
