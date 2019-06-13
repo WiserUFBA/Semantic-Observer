@@ -9,22 +9,19 @@ The semantic observer module is responsible for observing the changes made in a 
 
 Before installing the Semantic-Observer module you need to introduce some Vert.x modules to ServiceMix. The dependencies are located at:
 
-fot-gateway-semantic-enrichmen/jena-gateway.kar/target/jena-gateway.kar-1.0-SNAPSHOT.kar
-to:
-
-<servicemix_directory>/deploy
+https://github.com/WiserUFBA/Semantic-Observer/tree/master/semantic-observer/src/main/resources/dependencies
 
 
 # Deployment
-For installation of soft-iot-vertx-mqtt-broker it is necessary to execute the following commands in the ServiceMix terminal:
+For installation of Semantic-Observer it is necessary to execute the following commands in the ServiceMix terminal:
 
-```
-karaf@root()> bundle:install mvn:br.ufba.dcc.wiser.soft_iot/soft-iot-vertx-mqtt-broker/1.0.0
-```
+
+karaf@root()> bundle:install mvn:br.dcc.ufba.wiser.smartufba.observer/soft-iot-vertx-mqtt-broker/Semantic-Obsever/
+
 ## Support and development
 
 <p align="center">
-	Developed by Cleber Lira at </br>
+	Developed by Cleber Jorge Lira at </br>
   <img src="https://wiki.dcc.ufba.br/pub/SmartUFBA/ProjectLogo/wiserufbalogo.jpg"/>
 </p>
 
