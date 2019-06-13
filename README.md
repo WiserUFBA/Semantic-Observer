@@ -7,6 +7,12 @@ The semantic observer module is responsible for observing the changes made in a 
 
 # Installation
 
+Before installing the Semantic-Observer module you need to introduce some Vert.x modules to ServiceMix. The dependencies are located at:
+
+fot-gateway-semantic-enrichmen/jena-gateway.kar/target/jena-gateway.kar-1.0-SNAPSHOT.kar
+to:
+
+<servicemix_directory>/deploy
 
 
 # Deployment
